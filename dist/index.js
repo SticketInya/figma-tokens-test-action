@@ -9844,11 +9844,13 @@ try {
   const base_selector = core.getInput('base-selector');
   console.log(`base-selector ${base_selector}!`);
   const tokens = __nccwpck_require__(1693);
+  console.log('tokens', tokens);
 
   const file_contents = formatCssFile(base_selector, tokens);
   core.setOutput('css', file_contents);
-  //   const payload = JSON.stringify(github.context.payload, undefined, 2);
-  //   console.log(`The event payload: ${payload}`);
+
+  const payload = JSON.stringify(github.context.payload, undefined, 2);
+  console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
