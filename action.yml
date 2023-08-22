@@ -1,0 +1,17 @@
+name: 'Figma Tokens action test'
+description: 'Generate a css file from figma tokens'
+inputs:
+  destination: # the destination path
+    description: 'The destination path'
+    required: true
+    default: './generated-colors.css'
+  base-selector: # the base selector
+    description: 'The base selector'
+    required: true
+    default: 'body'
+outputs:
+  css:
+    description: 'The generated css'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
