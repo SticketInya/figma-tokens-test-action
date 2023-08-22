@@ -1,0 +1,31 @@
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    name: Generate Figma colors
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Generate CSS
+        uses: SticketInya/figma-tokens-test-action@v0.1
+        with:
+          destination: './generated-colors.scss'
+          base-selector: '.base_colors'
+          source: './tokens.json'
+      - name: Commit changes
+        run: |
+          git config --global user.name 'JPatrik'
+          git config --global user.email 'patrik.jokhel@dakai.io'
+          git add ./generated-colors.scss
+          git commit -am "auto: Re-generate colors"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          base: main
+          branch: colors-bump
+          title: '[Automated] Update generated colors'
+          assignees: SticketInya
