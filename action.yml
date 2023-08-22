@@ -5,6 +5,10 @@ inputs:
     description: 'The destination path'
     required: true
     default: './generated-colors.css'
+  source: # the source path
+    description: 'The destination path'
+    required: false
+    default: './tokens.json'
   base-selector: # the base selector
     description: 'The base selector'
     required: true
